@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>View Book</title>
+</head>
+<body>
+    <div class="container d-flex flex-row bg-primary border rounded my-3 p-4 justify-content-between" style="width: 80%; margin: auto;">
+        <div class="d-flex flex-column mx-4 p-2" style="width: 50%;">
+            <h1 class="text-light display-5 mb-4">Title: {{ book[0]['title'] }}</h1>
+            <h5 class="text-light">Favorited by:</h5>
+            <div class="d-flex flex-column border border-light rounded bg-info p-3">
+                {% for one_author in favorite_authors %}
+                <p class="text-light fw-bold">{{ one_author.name }}</p>
+                {% endfor %}
+            </div>
+            <div class="d-flex flex-row justify-content-evenly my-2">
+                <a href="/new_author" class="link-light">Add an Author</a> | <a href="/new_book" class="link-light">Add a Book</a> | <a href="/" class="link-light">Home</a>
+            </div>
+        </div>
+        <div class="d-flex flex-column ml-3" style="width: 40%;">
+            <h2 class="text-light mb-5">Add a new fan of {{ book[0]['title'] }}'s favorites</h2>
+            <form action="/books/{{book[0]['id']}}/update" method="post" class="form">
+                <div class="d-flex flex-row justify-content-evenly">
+                    <label for="book_title" class="form-label text-light fw-bold fs-4" id="author_name" name="author_name">Author:</label>
+                    <input type="hidden" id="book_id" name="book_id" value="{{ book[0]['id'] }}">
+                    <select class="form-control" id="author_name" name="author_name" style="width: 280px;">
+                        {% for one_author in all_authors %}
+                        <option class="form-control" id="author_{{ one_author.id }}" value="{{ one_author.id }}" name="author_name">{{ one_author.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="btn btn-info fw-bold text-primary border-light m-4 fs-4" style="width: 150px;">Add</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

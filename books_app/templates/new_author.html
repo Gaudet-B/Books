@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Add an Author</title>
+</head>
+<body>
+    <div class="container d-flex flex-row bg-primary border rounded my-3 p-4 justify-content-evenly" style="width: 60%; margin: auto;">
+        <div class="d-flex flex-column" style="width: 50%;">
+            <div><h1 class="text-light display-4">New Author</h1></div>
+            <form action="/make_author" method="post" class="form my-3 text-center">
+                <div class="d-flex flex-row justify-content-between">
+                    <label for="author_name" class="form-label text-light fw-bold fs-4" id="author_name" name="author_name">Name:</label>
+                    <input type="text" class="form-control" id="author_name" name="author_name" style="width: 300px;">
+                </div>
+                <button class="btn btn-info fw-bold text-primary border-light mt-4 fs-4" style="width: 215px;">Create</button>
+            </form>
+        </div>
+        <div class="d-flex flex-column" style="width: 30%;">
+            <div><h2 class="text-light display-6">All Authors</h2></div>
+            <div class="d-flex flex-column bg-info border border-light rounded p-3">
+                {% for one_author in all_authors %}
+                <a href="/authors/{{one_author.id}}" class="link-primary fw-bold">{{ one_author.name }}</a>
+                {% endfor %}
+            </div>
+            <div class="d-flex flex-row justify-content-evenly my-2">
+                <a href="/new_book" class="link-light">Add a Book</a> | <a href="/" class="link-light">Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
