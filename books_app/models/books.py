@@ -35,3 +35,4 @@ class Book:
         query = "SELECT * FROM books JOIN favorites ON favorites.book_id = books.id WHERE favorites.author_id = %(id)s"
         return connectToMySQL('books_schema').query_db(query, data)
 
+

@@ -42,7 +42,7 @@ def update_favorite_authors(book_id):
         "author_id": int(request.form['author_name']),
         "book_id": int(request.form['book_id'])
     }
-    Book.insert_data_into(data)
+    Author.insert_data(data)
     return redirect(f"/books/{book_id}")
 
 @app.route("/new_author")
